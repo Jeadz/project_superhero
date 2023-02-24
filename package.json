@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev" : "nodemon index.js",
+    "start" : "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Jeadz/project_superhero/issues"
   },
-  "homepage": "https://github.com/Jeadz/project_superhero#readme"
+  "homepage": "https://github.com/Jeadz/project_superhero#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
