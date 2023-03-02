@@ -38,3 +38,45 @@ superhero_routes_http.get("/:superheroId", (req, res) => {
 });
 
 module.exports = superhero_routes_http;
+
+/* Modificar uno de los superheroes existentes 
+   http: PUT
+   mongoose method: updateOne
+   */
+superhero_routes_http.put("/:superheroId", (req, res) =>{
+    const { superheroId } = req.params;
+    const { superhero, universe, superpowers, address } = req.body;
+    superhero_model
+      .updateOne(
+        { _id: superheroId},
+        { $set: {superhero, universe, superpowers, address}}
+      )
+        .then((data) => res.json(data))
+        .catch((err) => res.json({message: err}));
+});
+
+/* Eliminar uno de los superheroes existentes en la bd
+   http: DELETE
+   mongoose method: DELETE
+*/
+superhero_routes_http.delete("/:superheroId", (req, res) => {
+    const { superheroId } = req.params;
+    superhero_model
+      .deleteOne({ _id: superheroId  })
+      .then((data) => res.json(data))
+      .catch((err) => res.json({message: err}));
+});
+
+/* 
+    Elimina todas las coincidencias realizando la bísqieda por una propiedad en 
+    http: DELETE
+    mongoose method: deleteMany
+*/
+superhero_routes_http.delete("/", (rq,res) => {
+    const query = { superhero: { $regex: "Verde"} };
+    superhero_model
+        .deleteMany(query)
+        .then((data) => res.json(data))
+        .catch((err) => res.json({ message: err}));
+});
+
